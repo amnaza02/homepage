@@ -161,7 +161,13 @@ class _HomePageState extends State<HomePage> {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => detailPage(imagePath: imagePath)),
+                      builder: (context) => DetailPage(
+                        imagePath: imagePath,
+                        title: "منتج رائع",  // استبدله بالعنوان الفعلي للمنتج
+                        price: "\$20",       // استبدله بالسعر الفعلي
+                        description: "هذا منتج رائع مصنوع بجودة عالية.", // استبدله بالوصف الفعلي
+                      ),
+                    ),
                   ),
                   onDoubleTap: () => _toggleLike(imagePath),
                   child: Stack(
