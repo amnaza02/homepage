@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test1/edit_profile.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -7,10 +8,24 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings Page'),
+        title: const Text('Settings'),
+        backgroundColor: Colors.grey[50],
+        foregroundColor: Colors.black,
       ),
-      body: const Center(
-        child: Text('Welcome to the Settings Page!'),
+      body: ListView(
+        children: [
+          ListTile(
+            leading: const Icon(Icons.edit_outlined),
+            title: const Text("Edit informations"),
+            trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const EditProfile()),
+              );
+            },
+          ),
+        ],
       ),
     );
   }

@@ -24,7 +24,15 @@ class _HomePageState extends State<HomePage> {
 
   // Mapping categories to image lists
   final Map<String, List<String>> categoryImages = {
-    'Shirts': ['images/1.jpg', 'images/2.jpg', 'images/11.jpg', 'images/12.jpg', 'images/9.jpg', 'images/5.jpg', 'images/8.jpg'],
+    'Shirts': [
+      'images/1.jpg',
+      'images/2.jpg',
+      'images/11.jpg',
+      'images/12.jpg',
+      'images/9.jpg',
+      'images/5.jpg',
+      'images/8.jpg'
+    ],
     'Pants': ['images/3.jpg', 'images/4.jpg', 'images/12.jpg'],
     'Dresses': ['images/5.jpg', 'images/6.jpg', 'images/13.jpg'],
     'Jackets': ['images/7.jpg', 'images/8.jpg', 'images/14.jpg'],
@@ -35,7 +43,7 @@ class _HomePageState extends State<HomePage> {
   void openNotificationScreen(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const NotificationsPage()),
+      MaterialPageRoute(builder: (context) => const NotificationPage()),
     );
   }
 
@@ -60,7 +68,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200], 
+      backgroundColor: Colors.grey[200],
 
       // App bar with search and notification icon
       appBar: AppBar(
@@ -77,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                     borderRadius: BorderRadius.circular(30),
                     borderSide: BorderSide.none,
                   ),
-                  fillColor: const Color.fromARGB(255, 223, 218, 211),
+                  fillColor: const Color.fromARGB(255, 221, 211, 223),
                   filled: true,
                   contentPadding: const EdgeInsets.symmetric(vertical: 0),
                 ),
@@ -85,7 +93,8 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(width: 10),
             IconButton(
-              icon: const Icon(Icons.notifications, color: Color.fromARGB(255, 78, 64, 57)),
+              icon: const Icon(Icons.notifications,
+                  color: Color.fromARGB(255, 78, 64, 57)),
               onPressed: () => openNotificationScreen(context),
             ),
           ],
@@ -110,13 +119,14 @@ class _HomePageState extends State<HomePage> {
                   width: 120,
                   decoration: BoxDecoration(
                     color: _selectedRectangle == index
-                        ? Color.fromARGB(255, 178, 143, 119)
-                        : Color.fromARGB(255, 221, 207, 186),
+                        ? Color.fromARGB(255, 163, 119, 178)
+                        : Color.fromARGB(255, 207, 186, 221),
                     borderRadius: BorderRadius.circular(50),
                     boxShadow: _selectedRectangle == index
                         ? [
                             BoxShadow(
-                              color: Color.fromARGB((255 * 0.4).toInt(), 224, 99, 247),
+                              color: Color.fromARGB(
+                                  (255 * 0.4).toInt(), 224, 99, 247),
                               blurRadius: 6,
                               offset: const Offset(0, 2),
                             )
@@ -128,9 +138,9 @@ class _HomePageState extends State<HomePage> {
                     categories[index],
                     style: TextStyle(
                       fontSize: 14,
-                      color: _selectedRectangle == index 
-                          ? Colors.white 
-                          : Color.fromARGB(255, 78, 64, 57),
+                      color: _selectedRectangle == index
+                          ? Colors.white
+                          : Color.fromARGB(255, 0, 0, 0),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -163,9 +173,10 @@ class _HomePageState extends State<HomePage> {
                     MaterialPageRoute(
                       builder: (context) => DetailPage(
                         imagePath: imagePath,
-                        title: "منتج رائع",  // استبدله بالعنوان الفعلي للمنتج
-                        price: "\$20",       // استبدله بالسعر الفعلي
-                        description: "هذا منتج رائع مصنوع بجودة عالية.", // استبدله بالوصف الفعلي
+                        title: "Kaftan", 
+                        price: "12000 DA", 
+                        description: "Modern kaftan with a beautiful touch.",
+                        fabricType: "Silk", // Added missing required argument
                       ),
                     ),
                   ),
@@ -193,8 +204,8 @@ class _HomePageState extends State<HomePage> {
                                 : Colors.white,
                           ),
                           onPressed: () {
-                            _toggleLike(imagePath); 
-                           },
+                            _toggleLike(imagePath);
+                          },
                         ),
                       ),
                     ],

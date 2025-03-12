@@ -92,6 +92,16 @@ flutter:
     - images/28.jpg
     - images/29.jpg
     - images/30.jpg
+    - images/menswear2.jpg
+    - images/womenswear2.jpg
+    - images/kidswear.jpg
+    - images/occassionwear.jpg
+    - images/fabricbased.jpg
+    - images/accessories.jpg
+    - images/garaduation.jpg
+    - images/kidswear2.jpg
+    - images/hometextiles.jpg
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
