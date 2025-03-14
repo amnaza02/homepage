@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'track_order.dart';
 import 'detail_page.dart';
+import 'leave_review.dart'; // Import LeaveReview page
 
 class ManageOrders extends StatefulWidget {
   const ManageOrders({super.key});
@@ -107,7 +108,6 @@ class OrdersList extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const TrackOrderPage()),
                   );
                 } else if (orderType == "Cancelled") {
-                  // ✅ Navigate to DetailPage when "Re-Order" is clicked
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -117,6 +117,17 @@ class OrdersList extends StatelessWidget {
                         price: order["price"]!,
                         description: "High-quality fabric with elegant design.",
                         fabricType: "Silk",
+                      ),
+                    ),
+                  );
+                } else if (orderType == "Completed") {
+                  // ✅ Navigate to LeaveReview with correct parameters
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LeaveReview(
+                        orderImage: order["image"]!,
+                        orderTitle: order["title"]!,
                       ),
                     ),
                   );

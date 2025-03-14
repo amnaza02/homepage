@@ -35,6 +35,13 @@ class _TailorProfilePageState extends State<TailorProfilePage>
     'images/15.jpg',
   ];
 
+  final List<Map<String, dynamic>> reviews = [
+    {"name": "Sarah M.", "rating": 5, "comment": "Amazing work! Loved it."},
+    {"name": "John D.", "rating": 4, "comment": "Great quality, just a bit late."},
+    {"name": "Emma R.", "rating": 5, "comment": ""},
+    {"name": "Ahmed K.", "rating": 3, "comment": "Good, but could be better."},
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -70,8 +77,7 @@ class _TailorProfilePageState extends State<TailorProfilePage>
                 top: 40,
                 left: 10,
                 child: IconButton(
-                  icon: const Icon(Icons.arrow_back,
-                      color: Colors.white, size: 28),
+                  icon: const Icon(Icons.arrow_back, color: Colors.white, size: 28),
                   onPressed: () => Navigator.pop(context),
                 ),
               ),
@@ -97,8 +103,7 @@ class _TailorProfilePageState extends State<TailorProfilePage>
           ),
           const SizedBox(height: 50),
           Text(widget.name,
-              style: GoogleFonts.poppins(
-                  fontSize: 20, fontWeight: FontWeight.bold)),
+              style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold)),
           const SizedBox(height: 5),
           Text(
             "Skilled tailor creating custom clothing with a perfect fit and unique style.",
@@ -154,7 +159,7 @@ class _TailorProfilePageState extends State<TailorProfilePage>
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
-          color: isFollowing ? Colors.grey : Color.fromARGB(255, 163, 119, 178),
+          color: isFollowing ? Colors.grey : const Color.fromARGB(255, 163, 119, 178),
         ),
         child: Text(
           isFollowing ? "Unfollow" : "Follow",
@@ -192,12 +197,8 @@ class _TailorProfilePageState extends State<TailorProfilePage>
                   top: 10,
                   right: 10,
                   child: Icon(
-                    _likedImages.contains(imagePath)
-                        ? Icons.favorite
-                        : Icons.favorite_border,
-                    color: _likedImages.contains(imagePath)
-                        ? Colors.red
-                        : Colors.white,
+                    _likedImages.contains(imagePath) ? Icons.favorite : Icons.favorite_border,
+                    color: _likedImages.contains(imagePath) ? Colors.red : Colors.white,
                   ),
                 ),
               ],
@@ -209,10 +210,43 @@ class _TailorProfilePageState extends State<TailorProfilePage>
   }
 
   Widget _buildReviewsTab() {
-    return const Center(child: Text("Reviews Section"));
+    return ListView.builder(
+      padding: const EdgeInsets.all(16),
+      itemCount: reviews.length,
+      itemBuilder: (context, index) {
+        final review = reviews[index];
+        return Column(
+          children: [
+            Row(
+              children: [
+                const Icon(Icons.account_circle, size: 40, color: Colors.grey),
+                const SizedBox(width: 10),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(review["name"], style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.bold)),
+                    Row(
+                      children: List.generate(5, (i) => Icon(
+                        i < review["rating"] ? Icons.star : Icons.star_border,
+                        color: Colors.amber,
+                      )),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            if (review["comment"].isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(left: 50, top: 5),
+                child: Text(review["comment"], style: GoogleFonts.poppins(fontSize: 14)),
+              ),
+            const Divider(),
+          ],
+        );
+      },
+    );
   }
-
-  Widget _buildAboutTab() {
+   Widget _buildAboutTab() {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -226,7 +260,7 @@ class _TailorProfilePageState extends State<TailorProfilePage>
           _buildInfoRow(Icons.work, "Type: Independent"),
             const SizedBox(height: 20),
           _buildInfoRow(Icons.grid_view,
-              "Categories: Traditional, Modern, Custom Designs"),
+              "Categories: Traditional, Modern"),
         ],
       ),
     );
@@ -237,7 +271,7 @@ class _TailorProfilePageState extends State<TailorProfilePage>
       children: [
         Icon(icon, color: Color.fromARGB(255, 163, 119, 178)),
         const SizedBox(width: 10),
-        Expanded(child: Text(text, style: GoogleFonts.poppins(fontSize: 14))),
+        Text(text, style: GoogleFonts.poppins(fontSize: 14)),
       ],
     );
   }

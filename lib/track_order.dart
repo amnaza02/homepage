@@ -29,7 +29,6 @@ class TrackOrderPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Order Image and Info
             Row(
               children: [
                 ClipRRect(
@@ -60,8 +59,6 @@ class TrackOrderPage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 20),
-
-            // Order Details
             Text("Order Details",
                 style: GoogleFonts.poppins(
                     fontSize: 18, fontWeight: FontWeight.bold)),
@@ -78,7 +75,6 @@ class TrackOrderPage extends StatelessWidget {
                   orderDetailRow("Order Number", "#123456"),
                   orderDetailRow("Order Date", "10 Jan 2024"),
                   orderDetailRow("Estimated Delivery", "12 Jan 2024"),
-                  orderDetailRow("Payment Method", "Visa Card"),
                   orderDetailRow("Shipping Address", "Algiers, Algeria"),
                   const Divider(),
                   orderDetailRow("Size", "M"),
@@ -87,35 +83,49 @@ class TrackOrderPage extends StatelessWidget {
                     children: [
                       Text("Color",
                           style: GoogleFonts.poppins(
-                              fontSize: 14, fontWeight: FontWeight.w500, color: Colors.grey)),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.grey)),
                       Container(
                         width: 20,
                         height: 20,
                         decoration: BoxDecoration(
-                          color: Colors.blue, // اللون المختار
+                          color: Colors.blue,
                           shape: BoxShape.circle,
                         ),
                       ),
                     ],
                   ),
-                  orderDetailRow("Fabric Type", "Silk"),
                   orderDetailRow("Notes", "Custom embroidery on sleeves"),
                 ],
               ),
             ),
-
             const SizedBox(height: 20),
-            Text("Order Status",
-                style: GoogleFonts.poppins(
-                    fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("Order Status", style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 12),
             Column(
-              children: [
-                orderStep("Order Placed", "10 Jan 2024 10:00 AM", true, true),
-                orderStep("In Progress", "10 Jan 2024 02:00 PM", true, true),
-                orderStep("Shipped", "11 Jan 2024 08:00 AM", false, true),
-                orderStep("Out for Delivery", "11 Jan 2024", false, false),
-              ],
+              children: List.generate(6, (index) {
+                return orderStep(
+                  [
+                    "Pattern Making (الباترون)",
+                    "Fabric Cutting (التفصيل)",
+                    "Preliminary Sewing (الخياطة الأولية)",
+                    "Edge Finishing (السرفلة)",
+                    "Accessories Assembly (تركيب الكماليات)",
+                    "Delivery (التوصيل)"
+                  ][index],
+                  [
+                    "10 Jan 2024 10:00 AM",
+                    "10 Jan 2024 02:00 PM",
+                    "11 Jan 2024 08:00 AM",
+                    "11 Jan 2024",
+                    "11 Jan 2024",
+                    "11 Jan 2024"
+                  ][index],
+                  index < 2,
+                  index != 5,
+                );
+              }),
             ),
             const SizedBox(height: 20),
             SizedBox(
@@ -140,41 +150,44 @@ class TrackOrderPage extends StatelessWidget {
   }
 
   Widget orderStep(String title, String date, bool isCompleted, bool hasLine) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Column(
       children: [
-        Column(
-          children: [
-            Container(
-              width: 26,
-              height: 26,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: isCompleted
-                    ? const Color.fromARGB(255, 163, 119, 178)
-                    : Colors.grey.shade400,
-              ),
-              child: const Icon(Icons.check, size: 16, color: Colors.white),
-            ),
-            if (hasLine)
-              Container(
-                width: 2,
-                height: 60, // زيادة الطول ليصل إلى الدائرة أسفله
-                color: isCompleted
-                    ? const Color.fromARGB(255, 163, 119, 178)
-                    : Colors.grey.shade300,
-              ),
-          ],
-        ),
-        const SizedBox(width: 12),
-        Column(
+        Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title,
-                style: GoogleFonts.poppins(
+            Column(
+              children: [
+                Container(
+                  width: 26,
+                  height: 26,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: isCompleted
+                        ? const Color.fromARGB(255, 163, 119, 178)
+                        : Colors.grey.shade400,
+                  ),
+                  child: const Icon(Icons.check, size: 16, color: Colors.white),
+                ),
+                if (hasLine)
+                  Container(
+                    width: 2,
+                    height: 60,
+                    color: isCompleted
+                        ? const Color.fromARGB(255, 163, 119, 178)
+                        : Colors.grey.shade300,
+                  ),
+              ],
+            ),
+            const SizedBox(width: 12),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title, style: GoogleFonts.poppins(
                     fontSize: 16, fontWeight: FontWeight.bold)),
-            Text(date,
-                style: GoogleFonts.poppins(fontSize: 14, color: Colors.grey)),
+                Text(date, style: GoogleFonts.poppins(
+                    fontSize: 14, color: Colors.grey)),
+              ],
+            ),
           ],
         ),
       ],
@@ -187,15 +200,12 @@ class TrackOrderPage extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label,
-              style: GoogleFonts.poppins(
-                  fontSize: 14, fontWeight: FontWeight.w500, color: Colors.grey)),
-          Text(value,
-              style: GoogleFonts.poppins(
-                  fontSize: 14, fontWeight: FontWeight.w600)),
+          Text(label, style: GoogleFonts.poppins(
+              fontSize: 14, fontWeight: FontWeight.w500, color: Colors.grey)),
+          Text(value, style: GoogleFonts.poppins(
+              fontSize: 14, fontWeight: FontWeight.w600)),
         ],
       ),
     );
   }
 }
-

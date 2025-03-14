@@ -9,7 +9,6 @@ class LikePage extends StatefulWidget {
 }
 
 class _LikePageState extends State<LikePage> {
-  // قائمة بكل الصور
   final List<String> allImages = [
     'images/1.jpg', 'images/2.jpg', 'images/3.jpg', 'images/4.jpg',
     'images/5.jpg', 'images/6.jpg', 'images/7.jpg', 'images/8.jpg',
@@ -17,7 +16,6 @@ class _LikePageState extends State<LikePage> {
     'images/13.jpg', 'images/14.jpg', 'images/15.jpg'
   ];
 
-  // حذف الصورة عند الضغط على القلب
   void _removeImage(String imagePath) {
     setState(() {
       allImages.remove(imagePath);
@@ -43,7 +41,6 @@ class _LikePageState extends State<LikePage> {
             final imagePath = allImages[index];
             return GestureDetector(
               onTap: () {
-                // الانتقال إلى صفحة التفاصيل عند الضغط على الصورة
                 Navigator.push(
                   context,
                   MaterialPageRoute(

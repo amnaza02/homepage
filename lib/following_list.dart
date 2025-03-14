@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'tailor_profile_page.dart'; // استيراد صفحة البروفايل
+import 'tailor_profile_page.dart'; 
 
 class FollowingList extends StatefulWidget {
   const FollowingList({super.key});
@@ -76,7 +76,7 @@ class _FollowingListState extends State<FollowingList> {
                     onPressed: () => confirmRemoveFollower(index),
                   ),
                   onTap: () {
-                    // التنقل إلى صفحة البروفايل مع تمرير البيانات
+                   // Navigate to the profile page with data passing
                     Navigator.push(
                       context,
                       MaterialPageRoute(

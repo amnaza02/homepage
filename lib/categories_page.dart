@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:test1/sub_categories_page.dart';
 
+// StatelessWidget for displaying the main categories page
 class CategoriesPage extends StatelessWidget {
   const CategoriesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // List of categories with their titles and corresponding image paths
     final List<Map<String, String>> categories = [
-      {'title': "Men's Wear", 'image': 'images/menswear2.jpg'},
-      {'title': "Women's Wear", 'image': 'images/womenswear2.jpg'},
-      {'title': "Kids' Wear", 'image': 'images/kidswear.jpg'},
-      {'title': "Babies' Wear", 'image': 'images/kidswear2.jpg'},
-      {'title': "Special Occasion Wear", 'image': 'images/occassionwear.jpg'},
-      {'title': "Fabric-Based Categories", 'image': 'images/fabricbased.jpg'},
+      {'title': "Men", 'image': 'images/menswear2.jpg'},
+      {'title': "Women", 'image': 'images/womenswear2.jpg'},
+      {'title': "Kids", 'image': 'images/kidswear.jpg'},
+      {'title': "Babies", 'image': 'images/kidswear2.jpg'},
+      {'title': "Knitting", 'image': 'images/fabricbased.jpg'},
       {'title': "Accessories & Add-ons", 'image': 'images/accessories.jpg'},
-      {'title': "Graduation Wear", 'image': 'images/garaduation.jpg'},
+      {'title': "Graduation", 'image': 'images/55.jpg'},
       {'title': "Home textile", 'image': 'images/hometextiles.jpg'},
     ];
 
@@ -24,55 +26,60 @@ class CategoriesPage extends StatelessWidget {
           'Categories',
           style: GoogleFonts.poppins(fontSize: 22, fontWeight: FontWeight.w600),
         ),
-        centerTitle: true,
+        centerTitle: true, // Centers the title in the AppBar
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: ListView.builder(
-          physics: const BouncingScrollPhysics(), // تحسين تجربة السكرول
-          itemCount: categories.length,
+          physics: const BouncingScrollPhysics(), // Adds a bounce effect when scrolling
+          itemCount: categories.length, // Number of categories to display
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
+                // Navigates to the sub-category page when a category is tapped
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => CategoryDetailPage(
-                      categoryTitle: categories[index]['title']!,
-                      categoryImage: categories[index]['image']!,
+                    builder: (context) => SubCategoriesPage(
+                      mainCategory: categories[index]['title']!, // Passes selected category title
                     ),
                   ),
                 );
               },
               child: Card(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(10), // Rounded corners for card
                 ),
-                margin: const EdgeInsets.symmetric(vertical: 8),
-                elevation: 4,
+                margin: const EdgeInsets.symmetric(vertical: 8), // Adds vertical spacing between cards
+                elevation: 4, // Adds shadow effect to the card
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(10), // Clips child widgets to match card's rounded corners
                   child: Stack(
-                    alignment: Alignment.center,
+                    alignment: Alignment.center, // Aligns all child widgets to the center
                     children: [
+                      // Displays category image
                       Image.asset(
                         categories[index]['image']!,
-                        height: 150,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
+                        height: 180, 
+                        width: double.infinity, 
+                        fit: BoxFit.cover, 
                       ),
+                      // Adds a semi-transparent black overlay for better text visibility
                       Container(
-                        height: 150,
+                        height: 180, // Matches image height
                         color: Colors.black.withOpacity(0.3),
                       ),
+                      // Displays category title at the bottom of the card
                       Positioned(
+                        bottom: 15, // Adjusts position of text inside the card
                         child: Text(
                           categories[index]['title']!,
                           style: GoogleFonts.poppins(
-                            fontSize: 20,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Colors.white, // White color for contrast
                           ),
+                          textAlign: TextAlign.center, // Centers text
                         ),
                       ),
                     ],
@@ -81,48 +88,6 @@ class CategoriesPage extends StatelessWidget {
               ),
             );
           },
-        ),
-      ),
-    );
-  }
-}
-
-class CategoryDetailPage extends StatelessWidget {
-  final String categoryTitle;
-  final String categoryImage;
-
-  const CategoryDetailPage({
-    super.key,
-    required this.categoryTitle,
-    required this.categoryImage,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          categoryTitle,
-          style: GoogleFonts.poppins(fontSize: 22, fontWeight: FontWeight.w600),
-        ),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              categoryImage,
-              width: 250,
-              height: 250,
-              fit: BoxFit.cover,
-            ),
-            const SizedBox(height: 20),
-            Text(
-              categoryTitle,
-              style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-          ],
         ),
       ),
     );
