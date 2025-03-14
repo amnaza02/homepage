@@ -20,10 +20,10 @@ class SubCategoriesPage extends StatelessWidget {
         {'title': "T-Shirts", 'image': 'images/26.jpg'},
         {'title': "Traditional", 'image': 'images/27.jpg'},
         {'title': "Shorts", 'image': 'images/28.jpg'},
-        {'title': "Swimsuit", 'image': 'images/29.jpg'},
+        {'title': "Swimsuits", 'image': 'images/29.jpg'},
         {'title': "Kamis", 'image': 'images/30.jpg'},
         {'title': "Hats", 'image': 'images/32.jpg'},
-        {'title': "Sport Outfit", 'image': 'images/33.jpg'},
+        {'title': "Sport Outfits", 'image': 'images/33.jpg'},
         {'title': "Pajamas", 'image': 'images/31.jpg'},
       ],
       "women": [
@@ -38,6 +38,13 @@ class SubCategoriesPage extends StatelessWidget {
         {'title': "Casual Dresses", 'image': 'images/42.jpg'},
         {'title': "Chemises", 'image': 'images/43.jpg'},
         {'title': "T-Shirts", 'image': 'images/44.jpg'},
+        {'title': "Swimsuits", 'image': 'images/83.jpg'},
+        {'title': "Sport Outfits", 'image': 'images/82.jpg'},
+        {'title': "Skirts", 'image': 'images/85.jpg'},
+        {'title': "Jackets", 'image': 'images/84.jpg'},
+
+
+          
       ],
       "kids": [
         {'title': "Traditional", 'image': 'images/45.jpg'},
